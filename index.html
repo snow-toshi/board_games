@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ボードゲーム作品集</title>
+  <style>
+    :root {
+      --bg: #f6f3ee;
+      --card: #ffffff;
+      --text: #2b2b2b;
+      --sub: #6b6b6b;
+      --accent: #d9534f;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #1c1c1e;
+        --card: #2c2c2e;
+        --text: #f2f2f2;
+        --sub: #a8a8a8;
+      }
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Hiragino Sans", "Noto Sans JP", "Yu Gothic", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+    }
+    header {
+      text-align: center;
+      padding: 48px 16px 24px;
+    }
+    header h1 { margin: 0 0 8px; font-size: 2rem; }
+    header p { margin: 0; color: var(--sub); }
+    main {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 16px;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 20px;
+    }
+    .card {
+      background: var(--card);
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+      display: flex;
+      flex-direction: column;
+    }
+    .card img {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      object-fit: cover;
+      background: #ddd;
+    }
+    .card-body {
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+    .card h2 { margin: 0 0 8px; font-size: 1.2rem; }
+    .card p { margin: 0 0 16px; color: var(--sub); flex: 1; line-height: 1.6; }
+    .play {
+      display: inline-block;
+      text-align: center;
+      background: var(--accent);
+      color: #fff;
+      text-decoration: none;
+      padding: 10px;
+      border-radius: 8px;
+      font-weight: bold;
+    }
+    .play:hover { opacity: 0.85; }
+    footer {
+      text-align: center;
+      color: var(--sub);
+      padding: 32px 16px;
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>ボードゲーム作品集</h1>
+    <p>unityroomで公開しているボードゲームの一覧です</p>
+  </header>
+
+  <main id="games"></main>
+
+  <footer>&copy; 2026 あなたの名前</footer>
+
+  <script>
+    // ▼ ゲームを追加するときは、ここに { ... } を1つ増やすだけ
+    const games = [
+      {
+        title: "ゲーム1のタイトル",
+        description: "ゲームの説明文をここに書きます。",
+        url: "https://unityroom.com/games/xxxxx",
+        image: "" // 画像を使う場合は "images/game1.png" のように指定
+      },
+      {
+        title: "ゲーム2のタイトル",
+        description: "ゲームの説明文をここに書きます。",
+        url: "https://unityroom.com/games/yyyyy",
+        image: ""
+      }
+    ];
+
+    const container = document.getElementById("games");
+    for (const g of games) {
+      const card = document.createElement("article");
+      card.className = "card";
+      card.innerHTML = `
+        ${g.image ? `<img src="${g.image}" alt="${g.title}">` : ""}
+        <div class="card-body">
+          <h2>${g.title}</h2>
+          <p>${g.description}</p>
+          <a class="play" href="${g.url}" target="_blank" rel="noopener">▶ プレイする</a>
+        </div>
+      `;
+      container.appendChild(card);
+    }
+  </script>
+</body>
+</html>
