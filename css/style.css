@@ -1,0 +1,186 @@
+:root {
+  --bg: #07060f;
+  --card: rgba(18, 14, 38, 0.75);
+  --text: #e9e6ff;
+  --sub: #9a94c4;
+  --pink: #ff2fd6;
+  --cyan: #22f3ff;
+  --purple: #9b5cff;
+  --lime: #b6ff3b;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: "M PLUS Rounded 1c", "Hiragino Sans", "Yu Gothic", sans-serif;
+  color: var(--text);
+  background:
+    radial-gradient(circle at 15% 10%, rgba(255, 47, 214, 0.18), transparent 40%),
+    radial-gradient(circle at 85% 30%, rgba(34, 243, 255, 0.15), transparent 40%),
+    radial-gradient(circle at 50% 100%, rgba(155, 92, 255, 0.2), transparent 50%),
+    var(--bg);
+  overflow-x: hidden;
+}
+/* 背景のグリッド */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(155, 92, 255, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(155, 92, 255, 0.08) 1px, transparent 1px);
+  background-size: 40px 40px;
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* ===== ヘッダー ===== */
+header {
+  text-align: center;
+  padding: 72px 16px 40px;
+}
+.logo {
+  font-family: "Orbitron", sans-serif;
+  font-weight: 800;
+  font-size: clamp(2rem, 7vw, 3.6rem);
+  letter-spacing: 0.08em;
+  margin: 0;
+  color: #fff;
+  text-shadow:
+    0 0 6px #fff,
+    0 0 14px var(--pink),
+    0 0 28px var(--pink),
+    0 0 56px var(--pink);
+  animation: flicker 4s infinite;
+}
+.subtitle {
+  margin: 16px 0 0;
+  color: var(--cyan);
+  letter-spacing: 0.15em;
+  text-shadow: 0 0 8px var(--cyan);
+}
+@keyframes flicker {
+  0%, 18%, 22%, 25%, 53%, 57%, 100% { opacity: 1; }
+  20%, 24%, 55% { opacity: 0.4; }
+}
+
+/* ===== カード一覧 ===== */
+main {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 16px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 28px;
+}
+.card {
+  --neon: var(--cyan);
+  position: relative;
+  background: var(--card);
+  border: 2px solid var(--neon);
+  border-radius: 16px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  backdrop-filter: blur(6px);
+  box-shadow:
+    0 0 10px var(--neon),
+    inset 0 0 12px rgba(255, 255, 255, 0.05);
+  transition: transform 0.25s, box-shadow 0.25s;
+}
+.card:nth-child(3n+2) { --neon: var(--pink); }
+.card:nth-child(3n+3) { --neon: var(--purple); }
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow:
+    0 0 18px var(--neon),
+    0 0 42px var(--neon);
+}
+
+.thumb {
+  aspect-ratio: 16 / 9;
+  display: grid;
+  place-items: center;
+  background:
+    radial-gradient(circle, rgba(255, 255, 255, 0.06), transparent 70%),
+    #0d0a1f;
+  border-bottom: 2px solid var(--neon);
+  overflow: hidden;
+}
+.thumb img { width: 100%; height: 100%; object-fit: cover; }
+.thumb svg {
+  width: 60%;
+  height: auto;
+  filter: drop-shadow(0 0 6px var(--neon)) drop-shadow(0 0 14px var(--neon));
+}
+
+.card-body {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+.card h2 {
+  margin: 0 0 10px;
+  font-size: 1.25rem;
+  color: #fff;
+  text-shadow: 0 0 8px var(--neon);
+}
+.card p {
+  margin: 0 0 20px;
+  color: var(--sub);
+  line-height: 1.7;
+  flex: 1;
+}
+.play {
+  display: block;
+  text-align: center;
+  font-family: "Orbitron", sans-serif;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  color: var(--neon);
+  text-decoration: none;
+  padding: 12px;
+  border: 2px solid var(--neon);
+  border-radius: 10px;
+  text-shadow: 0 0 8px var(--neon);
+  box-shadow: 0 0 8px var(--neon), inset 0 0 8px var(--neon);
+  transition: background 0.2s, color 0.2s;
+}
+.play:hover {
+  background: var(--neon);
+  color: #0d0a1f;
+  text-shadow: none;
+}
+
+/* Coming soon */
+.card.soon { --neon: #5a5480; box-shadow: 0 0 6px rgba(90, 84, 128, 0.6); }
+.card.soon:hover { transform: none; box-shadow: 0 0 10px rgba(90, 84, 128, 0.8); }
+.soon .thumb span {
+  font-family: "Orbitron", sans-serif;
+  font-size: 3.5rem;
+  font-weight: 800;
+  color: #5a5480;
+  text-shadow: 0 0 10px rgba(155, 92, 255, 0.5);
+  animation: pulse 2.4s ease-in-out infinite;
+}
+.soon .play {
+  cursor: default;
+  color: #7d77a8;
+  text-shadow: none;
+  box-shadow: none;
+  border-style: dashed;
+}
+.soon .play:hover { background: transparent; color: #7d77a8; }
+@keyframes pulse {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 1; }
+}
+
+footer {
+  text-align: center;
+  color: var(--sub);
+  padding: 56px 16px 32px;
+  font-size: 0.85rem;
+  letter-spacing: 0.1em;
+}
