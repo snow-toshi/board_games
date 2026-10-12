@@ -22,7 +22,7 @@ const ghostIcon = `
 //   image に "images/xxx.png" を指定するとアイコンの代わりに画像が表示されます
 const games = [
   {
-    title: "Ghost Tic Tac Toe",
+    title: "ゴースト・マルバツゲーム",
     description: "自分の置いた駒が消えていくマルバツゲーム。",
     url: "https://unityroom.com/games/ghost_tic_tac_toe",
     image: "",
