@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ゴースト・マルバツゲーム｜遊び方とルール - BOARD GAMES</title>
+  <meta name="description" content="自分の置いた駒が消えていくマルバツゲーム「ゴースト・マルバツゲーム」の遊び方・ルール・勝つためのコツを紹介します。" />
+
+  <link rel="icon" href="../images/favicon.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="../images/apple-touch-icon.png" />
+
+  <!-- OGP：URLを貼ったときのカード（公開URLが変わったら書き換える） -->
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="BOARD GAMES" />
+  <meta property="og:title" content="ゴースト・マルバツゲーム｜遊び方とルール" />
+  <meta property="og:description" content="自分の置いた駒が消えていくマルバツゲーム。遊び方・ルール・勝つためのコツを紹介します。" />
+  <meta property="og:url" content="https://yuru-syaka.github.io/board_games/games/ghost-tic-tac-toe.html" />
+  <meta property="og:image" content="https://yuru-syaka.github.io/board_games/images/ogp.png" />
+  <meta property="og:locale" content="ja_JP" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;800&amp;family=M+PLUS+Rounded+1c:wght@400;700&amp;display=swap" rel="stylesheet" />
+  <link href="../css/style.css" rel="stylesheet" />
+  <link href="../css/page.css" rel="stylesheet" />
+</head>
+<body>
+  <nav class="site-nav">
+    <a class="brand" href="../">BOARD GAMES</a>
+    <ul>
+      <li><a href="../" aria-current="page">ゲーム</a></li>
+      <li><a href="../blog/">開発日記</a></li>
+    </ul>
+  </nav>
+
+  <main class="page">
+    <p class="breadcrumb"><a href="../">ホーム</a> ＞ ゴースト・マルバツゲーム</p>
+
+    <h1 class="page-title">ゴースト・マルバツゲーム</h1>
+    <p class="lead">置いた駒が、おばけのように消えていく。<br />いつもの三目並べが、先読み勝負に変わる。</p>
+
+    <!-- メインビジュアル：スクリーンショットを使う場合は svg を <img src="../images/ghost-main.png" alt="ゲーム画面" /> に置き換える -->
+    <div class="hero-visual">
+      <svg viewBox="0 0 200 120" fill="none" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="おばけと三目並べのアイコン">
+        <g stroke="#22f3ff" stroke-width="3">
+          <line x1="110" y1="20" x2="110" y2="104" /><line x1="138" y1="20" x2="138" y2="104" />
+          <line x1="84" y1="48" x2="166" y2="48" /><line x1="84" y1="76" x2="166" y2="76" />
+        </g>
+        <g stroke="#ff2fd6" stroke-width="4">
+          <line x1="90" y1="26" x2="104" y2="42" /><line x1="104" y1="26" x2="90" y2="42" />
+          <line x1="144" y1="82" x2="158" y2="98" /><line x1="158" y1="82" x2="144" y2="98" />
+        </g>
+        <circle cx="124" cy="62" r="8" stroke="#b6ff3b" stroke-width="4" />
+        <path d="M22 100 V52 a28 28 0 0 1 56 0 V100 l-9 -8 -9 8 -10 -8 -10 8 -9 -8 z" stroke="#ffffff" stroke-width="4" />
+        <circle cx="40" cy="54" r="4" fill="#ffffff" /><circle cx="60" cy="54" r="4" fill="#ffffff" />
+      </svg>
+    </div>
+
+    <a class="play-big" href="https://unityroom.com/games/ghost_tic_tac_toe" target="_blank" rel="noopener">▶ PLAY</a>
+
+    <!-- ▼ 基本情報：実際の内容に合わせて書き換える -->
+    <section class="panel">
+      <dl class="spec">
+        <dt>ジャンル</dt><dd>ボードゲーム／三目並べ</dd>
+        <dt>プレイ人数</dt><dd>1〜2人（CPU対戦／ふたりで対戦）</dd>
+        <dt>プレイ時間</dt><dd>1ゲーム 約1〜3分</dd>
+        <dt>操作</dt><dd>マウスクリック／タップ</dd>
+        <dt>対応環境</dt><dd>PC・スマートフォンのブラウザ（unityroom）</dd>
+        <dt>公開日</dt><dd><time datetime="2026-10-01">2026年10月1日</time></dd>
+      </dl>
+    </section>
+
+    <article class="prose">
+      <h2>どんなゲーム？</h2>
+      <p>
+        おなじみの「マルバツゲーム（三目並べ）」に、<strong>置いた駒が消えていく</strong>ルールを加えたゲームです。
+        普通の三目並べは、お互いが正しく打つと引き分けになりがちですが、このゲームでは駒が消えるので盤面が動き続けます。
+        最後まで勝負がつくまで遊べます。
+      </p>
+
+      <!-- ▼ ルールは実際の仕様に合わせて書き換える -->
+      <h2>ルール</h2>
+      <ol>
+        <li>先攻（○）と後攻（×）が、交互に 3×3 のマスに駒を置きます。</li>
+        <li>盤面に置ける自分の駒は<strong>最大3個</strong>までです。</li>
+        <li>4個目を置くと、<strong>いちばん古い自分の駒が消えます</strong>。</li>
+        <li>縦・横・斜めのどれかに自分の駒を3つ並べたら勝ちです。</li>
+      </ol>
+
+      <div class="note">
+        次に消える駒は、少し薄く表示されます。どの駒が消えるかを見ながら次の手を考えましょう。
+      </div>
+
+      <h2>遊び方</h2>
+      <h3>1. モードを選ぶ</h3>
+      <p>タイトル画面で「CPUと対戦」か「ふたりで対戦」を選びます。</p>
+      <div class="img-placeholder">ここにタイトル画面のスクリーンショット</div>
+
+      <h3>2. マスをクリックして駒を置く</h3>
+      <p>空いているマスをクリック（スマホはタップ）すると、自分の駒が置かれます。</p>
+      <div class="img-placeholder">ここにプレイ中のスクリーンショット</div>
+
+      <h3>3. 3つ並べたら勝ち</h3>
+      <p>先に3つ並べたプレイヤーの勝ちです。「もう一度」ボタンですぐに再戦できます。</p>
+
+      <h2>勝つためのコツ</h2>
+      <ul>
+        <li><strong>消える順番を数える</strong>：自分も相手も、次にどの駒が消えるかを常に意識しましょう。</li>
+        <li><strong>相手の駒が消えた後を狙う</strong>：相手の守りの駒が消える手番を狙って、リーチをかけるのが効果的です。</li>
+        <li><strong>中央は強いけれど過信しない</strong>：中央の駒もいずれ消えます。消えたあとの形まで考えて置きましょう。</li>
+      </ul>
+
+      <h2>よくある質問</h2>
+      <h3>スマートフォンでも遊べますか？</h3>
+      <p>はい。unityroom のページをスマートフォンのブラウザで開けば遊べます。</p>
+      <h3>引き分けはありますか？</h3>
+      <p>駒が消え続けるので、基本的には決着がつくまで続きます。</p>
+
+      <h2>開発日記</h2>
+      <p>このゲームを作ったときのことは、<a href="../blog/2026-10-12-ghost-tic-tac-toe.html">開発日記</a>に書いています。</p>
+    </article>
+
+    <a class="play-big" href="https://unityroom.com/games/ghost_tic_tac_toe" target="_blank" rel="noopener">▶ PLAY</a>
+
+    <div class="pager">
+      <a href="../">← ゲーム一覧に戻る</a>
+    </div>
+  </main>
+
+  <footer>&copy; 2026 ゆるめの社会人</footer>
+</body>
+</html>

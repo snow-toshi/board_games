@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- ▼ 記事ごとに書き換える：タイトル・説明・URL -->
+  <title>「駒が消えるマルバツゲーム」を作った話 - 開発日記 - BOARD GAMES</title>
+  <meta name="description" content="普通の三目並べは引き分けばかり。置いた駒が消えるルールを加えた「ゴースト・マルバツゲーム」の仕組みと、作って分かったことをまとめます。" />
+
+  <link rel="icon" href="../images/favicon.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="../images/apple-touch-icon.png" />
+
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="BOARD GAMES" />
+  <meta property="og:title" content="「駒が消えるマルバツゲーム」を作った話" />
+  <meta property="og:description" content="置いた駒が消えるルールを加えた三目並べの仕組みと、作って分かったことをまとめます。" />
+  <meta property="og:url" content="https://yuru-syaka.github.io/board_games/blog/2026-10-12-ghost-tic-tac-toe.html" />
+  <meta property="og:image" content="https://yuru-syaka.github.io/board_games/images/ogp.png" />
+  <meta property="og:locale" content="ja_JP" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;800&amp;family=M+PLUS+Rounded+1c:wght@400;700&amp;display=swap" rel="stylesheet" />
+  <link href="../css/style.css" rel="stylesheet" />
+  <link href="../css/page.css" rel="stylesheet" />
+</head>
+<body>
+  <nav class="site-nav">
+    <a class="brand" href="../">BOARD GAMES</a>
+    <ul>
+      <li><a href="../">ゲーム</a></li>
+      <li><a href="./" aria-current="page">開発日記</a></li>
+    </ul>
+  </nav>
+
+  <main class="page">
+    <p class="breadcrumb"><a href="../">ホーム</a> ＞ <a href="./">開発日記</a> ＞ 記事</p>
+
+    <h1 class="page-title">「駒が消えるマルバツゲーム」を作った話</h1>
+    <div class="post-meta">
+      <time datetime="2026-10-12">2026.10.12</time>
+      <span class="tag">Unity</span>
+      <span class="tag">ゴースト・マルバツゲーム</span>
+    </div>
+
+    <article class="prose">
+      <!-- ▼ ここから本文。見出し（h2/h3）・段落（p）・リスト（ul/ol）・画像（figure）・コード（pre）を組み合わせて書く -->
+      <p>
+        こんにちは、ゆるめの社会人です。unityroom で
+        <a href="../games/ghost-tic-tac-toe.html">ゴースト・マルバツゲーム</a>を公開しました。
+        この記事では、作ろうと思ったきっかけと、ゲームの仕組みについて書きます。
+      </p>
+
+      <h2>作ろうと思ったきっかけ</h2>
+      <p>
+        三目並べは、ルールを覚えると先手も後手もミスをしなくなり、ほとんど引き分けになってしまいます。
+        「最後まで勝負がつく三目並べ」にできないかと考えたのがスタートです。
+      </p>
+
+      <h2>ルールの工夫：駒が消える</h2>
+      <p>
+        自分の駒は最大3個までにして、4個目を置くと<strong>いちばん古い駒が消える</strong>ようにしました。
+        盤面が埋まらないので引き分けがなくなり、「どの駒が次に消えるか」を読み合うゲームになります。
+      </p>
+
+      <figure>
+        <div class="img-placeholder">ここにゲーム画面のスクリーンショット</div>
+        <figcaption>次に消える駒は薄く表示されます</figcaption>
+      </figure>
+
+      <h2>Unityでの実装</h2>
+      <h3>置いた順番をキューで管理する</h3>
+      <p>
+        プレイヤーごとに、置いたマスを <code>Queue</code> に入れておきます。
+        4個目を置く前に一番古いものを取り出して消すだけで、「古い順に消える」が実現できます。
+      </p>
+<pre><code>// プレイヤーごとの「置いたマス」の履歴
+private readonly Queue&lt;int&gt;[] history = { new Queue&lt;int&gt;(), new Queue&lt;int&gt;() };
+private const int MaxPieces = 3;
+
+void PlacePiece(int player, int cell)
+{
+    var queue = history[player];
+    if (queue.Count &gt;= MaxPieces)
+    {
+        int oldest = queue.Dequeue();   // 一番古い駒を取り出す
+        board[oldest] = Empty;          // 盤面から消す
+        cells[oldest].FadeOut();        // 消える演出
+    }
+    queue.Enqueue(cell);
+    board[cell] = player;
+}</code></pre>
+
+      <div class="note">
+        <code>Queue</code>（キュー）は「先に入れたものから先に出てくる」入れ物です。順番が大事なゲームのしくみと相性が良いです。
+      </div>
+
+      <h3>次に消える駒を薄くする</h3>
+      <p>
+        <code>queue.Peek()</code> で次に消える駒が分かるので、その駒の透明度を下げて表示しています。
+        プレイヤーが先を読みやすくなり、遊びやすさが大きく変わりました。
+      </p>
+
+      <h2>作ってみて分かったこと</h2>
+      <ul>
+        <li>ルールを1つ足すだけで、知っているゲームががらっと変わる</li>
+        <li>「次に何が起きるか」を見せる演出は、遊びやすさに直結する</li>
+        <li>（ここに、苦労したこと・テストプレイの感想などを書く）</li>
+      </ul>
+
+      <h2>次回予告</h2>
+      <p>次の作品も開発中です。公開したらまたここで紹介します。</p>
+
+      <p><a href="https://unityroom.com/games/ghost_tic_tac_toe" target="_blank" rel="noopener">▶ ゴースト・マルバツゲームを遊ぶ（unityroom）</a></p>
+      <!-- ▲ 本文ここまで -->
+    </article>
+
+    <div class="pager">
+      <a href="./">← 開発日記一覧</a>
+      <a href="../games/ghost-tic-tac-toe.html">ゲームの詳細を見る →</a>
+    </div>
+  </main>
+
+  <footer>&copy; 2026 ゆるめの社会人</footer>
+</body>
+</html>

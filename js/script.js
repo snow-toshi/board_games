@@ -18,6 +18,23 @@ const ghostIcon = `
     <circle cx="60" cy="54" r="4" fill="#ffffff"/>
   </svg>`;
 
+// ネオン風の大・中・小のおばけアイコン（ゴースト・ゴブル用）
+const gobulIcon = `
+  <svg viewBox="0 0 200 120" fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M18 104 V74 a14 14 0 0 1 28 0 V104 l-4.7 -4 -4.6 4 -4.7 -4 -4.7 4 -4.6 -4 z"
+          stroke="#b6ff3b" stroke-width="3.5"/>
+    <circle cx="27" cy="75" r="2.6" fill="#ffffff"/>
+    <circle cx="37" cy="75" r="2.6" fill="#ffffff"/>
+    <path d="M62 104 V62 a20 20 0 0 1 40 0 V104 l-6.7 -6 -6.6 6 -6.7 -6 -6.7 6 -6.6 -6 z"
+          stroke="#ff2fd6" stroke-width="3.5"/>
+    <circle cx="75" cy="63" r="3.2" fill="#ffffff"/>
+    <circle cx="89" cy="63" r="3.2" fill="#ffffff"/>
+    <path d="M118 104 V48 a28 28 0 0 1 56 0 V104 l-9.3 -8 -9.4 8 -9.3 -8 -9.4 8 -9.3 -8 z"
+          stroke="#22f3ff" stroke-width="4"/>
+    <circle cx="136" cy="50" r="4" fill="#ffffff"/>
+    <circle cx="156" cy="50" r="4" fill="#ffffff"/>
+  </svg>`;
+
 // ▼ ゲームを追加するときは、ここに { ... } を1つ増やすだけ
 //   image に "images/xxx.png" を指定するとアイコンの代わりに画像が表示されます
 const games = [
@@ -25,10 +42,17 @@ const games = [
     title: "ゴースト・マルバツゲーム",
     description: "自分の置いた駒が消えていくマルバツゲーム。",
     url: "https://unityroom.com/games/ghost_tic_tac_toe",
+    detail: "games/ghost-tic-tac-toe.html", // 詳細ページ（なければ "" ）
     image: "",
     icon: ghostIcon
   },
-  { comingSoon: true },
+  {
+    title: "ゴースト・ゴブル",
+    description: "大・中・小のコマを置いたり動かしたりして、小さいコマにかぶせて戦う三目並べ。動かしたコマの下から相手のコマが現れることも。",
+    url: "https://unityroom.com/games/ghost_gobul",
+    image: "",
+    icon: gobulIcon
+  },
   { comingSoon: true }
 ];
 
