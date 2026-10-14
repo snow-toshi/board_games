@@ -35,6 +35,26 @@ const gobulIcon = `
     <circle cx="156" cy="50" r="4" fill="#ffffff"/>
   </svg>`;
 
+// ネオン風の「良いおばけ・悪いおばけ・正体不明」アイコン（ゴースト・ブラフ用）
+const bluffIcon = `
+  <svg viewBox="0 0 200 120" fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M14 100 V58 a22 22 0 0 1 44 0 V100 l-7.3 -6 -7.4 6 -7.3 -6 -7.3 6 -7.4 -6 z"
+          stroke="#22f3ff" stroke-width="3.5"/>
+    <circle cx="28" cy="60" r="3.4" fill="#ffffff"/>
+    <circle cx="44" cy="60" r="3.4" fill="#ffffff"/>
+    <path d="M28 72 q8 6 16 0" stroke="#ffffff" stroke-width="2.5"/>
+    <path d="M78 104 V48 a22 22 0 0 1 44 0 V104 l-7.3 -6 -7.4 6 -7.3 -6 -7.3 6 -7.4 -6 z"
+          stroke="#9b5cff" stroke-width="3.5"/>
+    <path d="M91 44 a9 9 0 1 1 13 8 c-3 2 -4 4 -4 8" stroke="#ffffff" stroke-width="3.5"/>
+    <circle cx="100" cy="70" r="2.6" fill="#ffffff"/>
+    <path d="M142 100 V58 a22 22 0 0 1 44 0 V100 l-7.3 -6 -7.4 6 -7.3 -6 -7.3 6 -7.4 -6 z"
+          stroke="#ff2fd6" stroke-width="3.5"/>
+    <path d="M152 54 l10 5 M176 54 l-10 5" stroke="#ffffff" stroke-width="3"/>
+    <circle cx="157" cy="63" r="3" fill="#ffffff"/>
+    <circle cx="171" cy="63" r="3" fill="#ffffff"/>
+    <path d="M156 76 q8 -6 16 0" stroke="#ffffff" stroke-width="2.5"/>
+  </svg>`;
+
 // ▼ ゲームを追加するときは、ここに { ... } を1つ増やすだけ
 //   image に "images/xxx.png" を指定するとアイコンの代わりに画像が表示されます
 const games = [
@@ -53,7 +73,13 @@ const games = [
     image: "",
     icon: gobulIcon
   },
-  { comingSoon: true }
+  {
+    title: "ゴースト・ブラフ",
+    description: "6×6の盤で、良いゴーストと悪いゴーストを動かして戦う心理戦。相手のゴーストの正体は、取るまでわからない。",
+    url: "https://unityroom.com/games/ghost_bluff",
+    image: "",
+    icon: bluffIcon
+  }
 ];
 
 const container = document.getElementById("games");
