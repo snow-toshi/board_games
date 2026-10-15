@@ -55,7 +55,7 @@ const bluffIcon = `
     <path d="M156 76 q8 -6 16 0" stroke="#ffffff" stroke-width="2.5"/>
   </svg>`;
 
-// ネオン風の「特徴の違う4体のおばけが一列にそろう」アイコン（ゴースト・クアトロ用）
+// ネオン風の「特徴の違う4体のおばけが一列にそろう」アイコン（ゴースト・クアルト用）
 const quartIcon = `
   <svg viewBox="0 0 200 120" fill="none" stroke-linecap="round" stroke-linejoin="round">
     <path d="M18 92 V50 a14 14 0 0 1 28 0 V92 l-4.7 -4 -4.6 4 -4.7 -4 -4.7 4 -4.6 -4 z"
@@ -103,7 +103,7 @@ const games = [
     icon: bluffIcon
   },
   {
-    title: "ゴースト・クアトロ",
+    title: "ゴースト・クアルト",
     description: "相手が選んだゴーストを置き、自分も相手に置かせるゴーストを選んで渡す。4体そろえたら勝ち。相手を「渡せるゴーストがない」状況に追い込め。",
     url: "https://unityroom.com/games/ghost_quart",
     image: "",
