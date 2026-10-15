@@ -55,6 +55,28 @@ const bluffIcon = `
     <path d="M156 76 q8 -6 16 0" stroke="#ffffff" stroke-width="2.5"/>
   </svg>`;
 
+// ネオン風の「特徴の違う4体のおばけが一列にそろう」アイコン（ゴースト・クアトロ用）
+const quartIcon = `
+  <svg viewBox="0 0 200 120" fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M18 92 V50 a14 14 0 0 1 28 0 V92 l-4.7 -4 -4.6 4 -4.7 -4 -4.7 4 -4.6 -4 z"
+          stroke="#22f3ff" stroke-width="3.5"/>
+    <circle cx="27" cy="52" r="2.6" fill="#ffffff"/>
+    <circle cx="37" cy="52" r="2.6" fill="#ffffff"/>
+    <path d="M62 92 V68 a14 14 0 0 1 28 0 V92 l-4.7 -4 -4.6 4 -4.7 -4 -4.7 4 -4.6 -4 z"
+          stroke="#ff2fd6" stroke-width="3.5" fill="rgba(255, 47, 214, 0.35)"/>
+    <circle cx="71" cy="70" r="2.6" fill="#ffffff"/>
+    <circle cx="81" cy="70" r="2.6" fill="#ffffff"/>
+    <path d="M110 92 V50 a14 14 0 0 1 28 0 V92 l-4.7 -4 -4.6 4 -4.7 -4 -4.7 4 -4.6 -4 z"
+          stroke="#b6ff3b" stroke-width="3.5" fill="rgba(182, 255, 59, 0.3)"/>
+    <circle cx="119" cy="52" r="2.6" fill="#ffffff"/>
+    <circle cx="129" cy="52" r="2.6" fill="#ffffff"/>
+    <path d="M154 92 V68 a14 14 0 0 1 28 0 V92 l-4.7 -4 -4.6 4 -4.7 -4 -4.7 4 -4.6 -4 z"
+          stroke="#9b5cff" stroke-width="3.5"/>
+    <circle cx="163" cy="70" r="2.6" fill="#ffffff"/>
+    <circle cx="173" cy="70" r="2.6" fill="#ffffff"/>
+    <line x1="14" y1="106" x2="186" y2="106" stroke="#ffffff" stroke-width="3"/>
+  </svg>`;
+
 // ▼ ゲームを追加するときは、ここに { ... } を1つ増やすだけ
 //   image に "images/xxx.png" を指定するとアイコンの代わりに画像が表示されます
 const games = [
@@ -79,6 +101,13 @@ const games = [
     url: "https://unityroom.com/games/ghost_bluff",
     image: "",
     icon: bluffIcon
+  },
+  {
+    title: "ゴースト・クアトロ",
+    description: "相手が選んだゴーストを置き、自分も相手に置かせるゴーストを選んで渡す。4体そろえたら勝ち。相手を「渡せるゴーストがない」状況に追い込め。",
+    url: "https://unityroom.com/games/ghost_quart",
+    image: "",
+    icon: quartIcon
   }
 ];
 
